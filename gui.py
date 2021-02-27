@@ -1,15 +1,9 @@
-import tkinter
 import subprocess
 
 CHROMECAST_IP = "192.168.1.148"
 
-root = tkinter.Tk()
 
-url_bar = tkinter.Entry(root)
-url_bar.grid(row=0, column=0)
-
-def play_video(event):
-    youtube_url = url_bar.get()
+def play_video(youtube_url):
 
     print("Finding CDN url...")
     proc = subprocess.run(["youtube-dl", "--get-url", "-f", "22", youtube_url],
@@ -27,7 +21,6 @@ def empty_bar(event):
     url_bar.delete(0, tkinter.END)
 
 
-root.bind('<Return>', play_video)
-root.bind('<Shift-Delete>', empty_bar)
-
-root.mainloop()
+while True:
+    youtube_url = input("Enter a youtube url:")
+    play_video(youtube_url)
