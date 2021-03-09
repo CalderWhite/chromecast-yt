@@ -4,7 +4,6 @@ CHROMECAST_IP = "192.168.1.148"
 
 
 def play_video(youtube_url):
-
     print("Finding CDN url...")
     proc = subprocess.run(["youtube-dl", "--get-url", "-f", "22", youtube_url],
                           capture_output=True)
@@ -16,9 +15,6 @@ def play_video(youtube_url):
         "vlc", cdn_url, "--sout", "#chromecast", "--sout-chromecast-ip", CHROMECAST_IP,
         "--demux-filter", "demux_chromecast"
     ])
-
-def empty_bar(event):
-    url_bar.delete(0, tkinter.END)
 
 
 while True:
